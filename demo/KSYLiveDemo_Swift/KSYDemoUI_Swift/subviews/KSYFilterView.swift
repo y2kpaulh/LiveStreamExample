@@ -45,28 +45,29 @@ class KSYFilterView: KSYUIView {
 
     override init(withParent pView: KSYUIView) {
         super.init(withParent: pView)
-        _effectNames = ["1 小清新", "2 靓丽", "3 甜美可人", "4 怀旧", "5 蓝调", "6 老照片"]
+        _effectNames = ["1 small fresh", "2 beautiful", "3 sweet and pleasant", "4 nostalgia", "5 blues", "6 old photos"]
         _curEffectIdx = 1
         
-        // 修改美颜参数
-        filterParam1 = addSlider(name: "参数", from: 0, to: 100, initV: 50)
-        filterParam2 = addSlider(name: "美白", from: 0, to: 100, initV: 50)
-        filterParam3 = addSlider(name: "红润", from: 0, to: 100, initV: 50)
-        filterParam2?.isHidden = true
-        filterParam3?.isHidden = true
+        // Modify the beauty parameters
+        filterParam1 = addSlider (name: "Parameter", from: 0, to: 100, initV: 50)
+        filterParam2 = addSlider (name: "Whitening", from: 0, to: 100, initV: 50)
+        filterParam3 = addSlider (name: "ruddy", from: 0, to: 100, initV: 50)
+        filterParam2? .isHidden = true
+        filterParam3? .isHidden = true
+
+        _lblSeg = addLabel (title: "Filter")
+        filterGroupType = addSegCtrlWithItems (items: ["Off", "Old beauty", "Beauty pro", "Red beauty", "Beauty special effects"])
+        filterGroupType? .selectedSegmentIndex = 1
+        selectFilter (idx: 1)
+
+        lbPreviewFlip = addLabel (title: "Preview image")
+        lbStreamFlip = addLabel (title: "Push Stream Mirror")
+        swPrevewFlip = addSwitch (on: false)
+        swStreamFlip = addSwitch (on: false)
+
+        lbUiRotate = addLabel (title: "UI rotation")
+        lbStrRotate = addLabel (title: "Push stream rotation")
         
-        _lblSeg = addLabel(title: "滤镜")
-        filterGroupType = addSegCtrlWithItems(items: ["关", "旧美颜", "美颜pro", "红润美颜", "美颜特效"])
-        filterGroupType?.selectedSegmentIndex = 1
-        selectFilter(idx: 1)
-        
-        lbPreviewFlip = addLabel(title: "预览镜像")
-        lbStreamFlip = addLabel(title: "推流镜像")
-        swPrevewFlip = addSwitch(on: false)
-        swStreamFlip = addSwitch(on: false)
-        
-        lbUiRotate = addLabel(title: "UI旋转")
-        lbStrRotate = addLabel(title: "推流旋转")
         swUiRotate = addSwitch(on: false)
         swStrRotate = addSwitch(on: false)
         swStrRotate?.isEnabled = false
@@ -190,7 +191,7 @@ class KSYFilterView: KSYUIView {
             curFilter = nil
             break
         case 1:
-            filterParam1?.nameL.text = "参数"
+            filterParam1?.nameL.text = "Parameter"
             filterParam1?.isHidden = false
             curFilter = KSYGPUBeautifyExtFilter()
             break
@@ -199,7 +200,7 @@ class KSYFilterView: KSYUIView {
             filterParam1?.isHidden = false
             filterParam2?.isHidden = false
             filterParam3?.isHidden = false
-            filterParam1?.nameL.text = "磨皮"
+            filterParam1?.nameL.text = "pearling"
             
             f.grindRatio = CGFloat(filterParam1!.normalValue)
             f.whitenRatio = CGFloat(filterParam2!.normalValue)
@@ -207,8 +208,8 @@ class KSYFilterView: KSYUIView {
             curFilter = f
             break
         case 3:
-            filterParam1?.nameL.text = "磨皮"
-            filterParam3?.nameL.text = "红润"
+            filterParam1?.nameL.text = "pearling"
+            filterParam3?.nameL.text = "ruddy"
             filterParam1?.isHidden = false
             filterParam2?.isHidden = false
             filterParam3?.isHidden = false
@@ -223,8 +224,8 @@ class KSYFilterView: KSYUIView {
             curFilter = bf
             break
         case 4:
-            filterParam1?.nameL.text = "磨皮"
-            filterParam3?.nameL.text = "特效"
+            filterParam1?.nameL.text = "pearling"
+            filterParam3?.nameL.text = "Special effects"
             filterParam1?.isHidden = false
             filterParam2?.isHidden = false
             filterParam3?.isHidden = false

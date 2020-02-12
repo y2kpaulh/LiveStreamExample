@@ -351,7 +351,7 @@ class KSYPresetCfgView: KSYUIView, UIImagePickerControllerDelegate, UINavigation
        if idx == 0 {
           profilePicker? .isHidden = false
           getStreamerProfile (profile: KSYStreamerProfile (rawValue: curProfileIdx)!)
-          btn0? .setTitle ("Preset Cfg Live", for: .normal)
+          btn0?.setTitle ("Preset Live", for: .normal)
         }
        else {
           lblResolutionUI? .isHidden = false
@@ -368,7 +368,7 @@ class KSYPresetCfgView: KSYUIView, UIImagePickerControllerDelegate, UINavigation
           audioKbpsUI? .isHidden = false
           lblBwEstMode? .isHidden = false
           bwEstModeUI? .isHidden = false
-          btn0? .setTitle ("Custom configuration broadcast", for: .normal)
+          btn0?.setTitle ("Custom broadcast", for: .normal)
         }
         layoutUI()
     }
