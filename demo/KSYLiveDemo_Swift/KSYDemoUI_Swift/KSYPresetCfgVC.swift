@@ -14,7 +14,7 @@ import UIKit
  */
 class KSYPresetCfgVC: KSYUIVC {
 
-    var rtmpURL: String            // rtmpserver 地址
+    var rtmpURL: String            // rtmpserver address
     var cfgView: KSYPresetCfgView
     
     init(url: String) {
@@ -36,7 +36,7 @@ class KSYPresetCfgVC: KSYUIVC {
         
         cfgView.frame = view.frame
         self.view = cfgView
-        //  TODO: !!!! 设置是否自动启动推流
+        //  TODO: !!!! Set whether to automatically start push stream
 //        let btn: UIButton
 //        btn = cfgView.btn2
 //        if btn != nil {

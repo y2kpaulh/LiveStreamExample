@@ -40,23 +40,23 @@ class KSYBgmView: KSYUIView {
     
     override init(withParent pView: KSYUIView) {
         super.init(withParent: pView)
-        _bgmTitle = addLabel(title: "背景音乐地址 Documents/bgms")
-        progressV = UIProgressView()
-        addSubview(progressV!)
-        previousBtn = addButton(title: "上一首")
-        playBtn = addButton(title: "播放")
-        pauseBtn = addButton(title: "暂停")
-        stopBtn = addButton(title: "停止")
-        volumSl = addSlider(name: "主播端音量", from: 0, to: 100, initV: 50)
-        volumSl?.slider.value = 50
-        nextBtn = addButton(title: "下一首")
+        _bgmTitle = addLabel (title: "BGM path Documents/bgms")
+        progressV = UIProgressView ()
+        addSubview (progressV!)
+        previousBtn = addButton (title: "Previous")
+        playBtn = addButton (title: "play")
+        pauseBtn = addButton (title: "Pause")
+        stopBtn = addButton (title: "Stop")
+        volumSl = addSlider (name: "volume", from: 0, to: 100, initV: 50)
+        volumSl? .slider.value = 50
+        nextBtn = addButton (title: "Next")
         _bgmStatus = "idle"
         bgmPattern = [".mp3", ".m4a", ".aac"]
-        _bgmSel = KSYFileSelector.init(dir: "/Documents/bgms/",
-                                       suf: bgmPattern!)
-        bgmPath = _bgmSel?.filePath
-        _cnt = _bgmSel!.fileList!.count
-        loopType = addSegCtrlWithItems(items: ["单曲播放", "单曲循环", "随机播放","循环播放"])
+        _bgmSel = KSYFileSelector.init (dir: "/Documents/bgms/",suf: bgmPattern!)
+        bgmPath = _bgmSel? .filePath
+        _cnt = _bgmSel! .fileList! .count
+        loopType = addSegCtrlWithItems (items: ["Single Play", "Single Loop", "Random Play", "Loop Play"])
+        
         loopType?.selectedSegmentIndex = 4
     }
     
@@ -75,9 +75,9 @@ class KSYBgmView: KSYUIView {
         putRow1(subV: loopType!)
     }
     
-    /// get next bgm path to play
+    // get next bgm path to play
     func loopNextBgmPath() -> String {
-        // "单曲播放", "单曲循环", "随机播放","循环播放"
+    // "Single track play", "Single track loop", "Shuffle play", "Loop play"
         switch loopType!.selectedSegmentIndex {
         case 0:
             break

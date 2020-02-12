@@ -9,25 +9,24 @@
 import UIKit
 
 /**
- KSY 推流SDK的主要演示视图
- 
- 主要演示了SDK 提供的API的基本使用方法
+   The main demo view of the KSY Push Stream SDK
+   Demonstrates the basic usage of the API provided by the SDK
  */
 
-// 为防止将手机存储写满,限制录像时长为30s
-let REC_MAX_TIME = 30   //录制视频的最大时间，单位s
+//To prevent the phone's memory from being full, limit the video recording time to 30s
+let REC_MAX_TIME = 30   //Maximum time for recording video, unit -> Second
 
 
 class KSYStreamerVC: KSYUIVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var bAutoStart: Bool = false
     var presetCfgView: KSYPresetCfgView?
     
-    var ctrlView: KSYCtrlView?          /// 摄像头的基本控制视图
+    var ctrlView: KSYCtrlView? /// Basic control view of the camera
     var menuNames: [String]?
-    var ksyBgmView: KSYBgmView?         /// 背景音乐配置页面
-    var ksyFilterView: KSYFilterView?   /// 视频滤镜相关参数配置页面
-    var audioView: KSYAudioCtrlView?    /// 声音配置页面
-    var miscView: KSYMiscView?          /// 其他功能配置页面
+    var ksyBgmView: KSYBgmView? /// Background music configuration page
+    var ksyFilterView: KSYFilterView? /// Video filter related parameter configuration page
+    var audioView: KSYAudioCtrlView? /// Sound configuration page
+    var miscView: KSYMiscView? /// Other function configuration page
     
     var kit: KSYGPUStreamerKit?
     
@@ -353,10 +352,10 @@ class KSYStreamerVC: KSYUIVC, UIImagePickerControllerDelegate, UINavigationContr
         miscView?.autoReconnect?.slider.isEnabled = !bStart
         kit?.maxAutoRetry = Int32(Int(miscView!.autoReconnect!.slider.value))
         
-        //判断是直播还是录制
+        //Determine whether it is live or recorded
         let title = (ctrlView?.btnStream?.currentTitle)!
-        _bRecord = (title == "开始录制")
-        miscView?.swBypassRec?.isEnabled = !_bRecord! // 直接录制时, 不能旁路录制
+        _bRecord = (title == "Start recording")
+        miscView?.swBypassRec?.isEnabled = !_bRecord! // When recording directly, you cannot bypass recording
         
         if _bRecord! && bStart {
             deleteFile(file: presetCfgView!.hostUrl()!)
@@ -365,7 +364,7 @@ class KSYStreamerVC: KSYUIVC, UIImagePickerControllerDelegate, UINavigationContr
     
     // MARK: - state change
     @objc func onCaptureStateChange(not: Notification) {
-        print("new capStat: \(kit?.getCurCaptureStateName())")
+        print("new capStat: \(String(describing: kit?.getCurCaptureStateName()))")
         ctrlView?.lblStat?.text = kit?.getCurCaptureStateName()
     }
 
@@ -487,8 +486,8 @@ class KSYStreamerVC: KSYUIVC, UIImagePickerControllerDelegate, UINavigationContr
         }
         _strSeconds += 1
         updateLogoText()
-        updateRecLabel()        // 本地录制:直接存储到本地, 不推流
-        updateBypassRecLable()  // 旁路录制:一边推流一边录像
+        updateRecLabel()        // Local recording: Store directly to local, no streaming
+        updateBypassRecLable()  // Bypass recording: record while streaming
     }
     
     // MARK: - UI respond
