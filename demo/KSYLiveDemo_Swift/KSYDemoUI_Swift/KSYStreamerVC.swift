@@ -198,8 +198,6 @@ class KSYStreamerVC: KSYUIVC, UIImagePickerControllerDelegate, UINavigationContr
         NotificationCenter.default.addObserver(self, selector: #selector(onBgmPlayerStateChange(not:)), name: NSNotification.Name.KSYAudioStateDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enterBg(not:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(becameActive(not:)), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
-        
     }
     
     override func rmObservers() {
@@ -472,7 +470,7 @@ class KSYStreamerVC: KSYUIVC, UIImagePickerControllerDelegate, UINavigationContr
             print("stop bypass record")
             saveVideoToAlbum(path: _bypassRecFile!)
         }else if newState == KSYRecordState.error {
-            print("bypass record error \(kit?.streamerBase.bypassRecordErrorName)")
+            print("bypass record error \(String(describing: kit?.streamerBase.bypassRecordErrorName))")
         }
     }
     

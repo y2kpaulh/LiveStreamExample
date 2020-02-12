@@ -89,7 +89,7 @@ class KSYLiveVC: UIViewController {
     func initFrame() {
         var textY = UIApplication.shared.statusBarFrame.height
         let btnH: CGFloat = 30
-        let btnW: CGFloat = 80
+        let btnW: CGFloat = 160
         _buttonQR?.frame = CGRect.init(x: 20,
                                        y: textY + 5,
                                        width: btnW,
@@ -131,8 +131,8 @@ class KSYLiveVC: UIViewController {
         _textField = addTextField()
         _addressTable = addTableView()
         _ctrTableView = addTableView()
-        _buttonQR = addButton(title: "Scan QR")
-        _buttonClose = addButton(title: "Close kbd")
+        _buttonQR = addButton(title: "Scan QR Code")
+        _buttonClose = addButton(title: "Close keyboard")
         initFrame()
     }
     
@@ -269,7 +269,7 @@ extension KSYLiveVC: UITableViewDataSource,UITableViewDelegate , UITextFieldDele
             return "Controller bar"
         }else if tableView == _addressTable {
             if section == 0 {
-                return "Push address"
+                return "Push stream address"
             }else if section == 1 {
                 return "Pull stream address"
             }else if section == 2 {
